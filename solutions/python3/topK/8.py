@@ -3,6 +3,7 @@
 import heapq
 from collections import Counter
 
+
 def maxDistinctNum(a, k):
     cnt = Counter(a)
     heap = []
