@@ -2,8 +2,8 @@
 
 
 ### Deque
-* append()
-* appendLeft()
+* append() : Stack 
+* appendLeft() : Queue
 * pop()
 * popLeft()
 * insert(idx, val)
