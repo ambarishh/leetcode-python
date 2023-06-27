@@ -1,37 +1,31 @@
-# 200. Number of Islands
-# https://leetcode.com/problems/number-of-islands/description/
+# 323. Number of Connected Components in an Undirected Graph
+# https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/
+import collections
 from typing import List
 
 
 class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
-
-        if not grid:
-            return 0
-
-        ROWS, COLS = len(grid), len(grid[0])
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        graph = collections.defaultdict(list)
         visited = set()
         count = 0
 
-        def dfs(row: int, col: int):
-            if ( row < 0 or row >= ROWS
-                    or col < 0 or col >= COLS
-                    or grid[row][col] == "0"
-                    or (row, col) in visited):
+        for x,y in edges:
+            graph[x].append(y)
+            graph[y].append(x)
+
+        def dfs(node:int):
+            if node in visited:
                 return
+            visited.add(node)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    dfs(neighbor)
 
-            # else visit
-            visited.add((row, col))
-            # visit neighbors
-            dfs(row - 1, col)
-            dfs(row + 1, col)
-            dfs(row, col - 1)
-            dfs(row, col + 1)
-
-        for row in range(ROWS):
-            for col in range(COLS):
-                if grid[row][col] == "1" and (row, col) not in visited:
-                    count += 1
-                    dfs(row, col)
+        for x in range(n):
+            if x not in visited:
+                count += 1
+                dfs(x)
 
         return count
+
