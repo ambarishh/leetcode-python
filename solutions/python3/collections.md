@@ -15,6 +15,12 @@
 * popLeft()
 * insert(idx, val)
 
+### Sorted Containers
+##### SortedList
+##### SortedSet
+##### SortedDict
+* add()
+* remove()
 
 ### Default Dictionary
 * defaultdict(int) : default values of key is 0
